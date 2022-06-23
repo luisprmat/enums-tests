@@ -2,11 +2,11 @@
 
 namespace App\Enums;
 
-enum PostStatus: int
+enum PostStatus: string
 {
-    case DRAFT = 0;
-    case PUBLISH = 1;
-    case FUTURE = 2;
+    case DRAFT = '0';
+    case PUBLISH = '1';
+    case FUTURE = '2';
 
     public function color(): string
     {

@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\PostStatus;
 use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 
@@ -14,8 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    $posts = Post::all();
+Route::view('/', 'welcome', ['posts' => Post::paginate(5)]);
 
-    return view('welcome', compact('posts'));
+Route::get('statuses/{status}', function (PostStatus $status) {
+    dump($status->color());
 });

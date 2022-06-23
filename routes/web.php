@@ -1,7 +1,8 @@
 <?php
 
-use App\Enums\PostStatus;
 use App\Models\Post;
+use App\Enums\PostStatus;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,18 +22,12 @@ Route::get('statuses/{status}', function (PostStatus $status) {
     dump($status->color());
 });
 
+// DB::listen(function ($query) {
+//     dump($query->sql);
+// });
+
 Route::get('search/{term?}', function ($term = '') {
-    // /* Without FULLTEXT */
-    // $term = '%'.$term.'%';
-
-    // return Post::where('body', 'LIKE', $term)
-    //     ->orWhere('title', 'LIKE', $term)
-    //     ->get();
-
-    // /* With FULLTEXT */
     return $term
-        ? Post::whereFullText('body', $term)
-            ->orWhereFullText('title', $term)
-            ->get()
+        ? Post::search($term)->get()
         : Post::all();
 });

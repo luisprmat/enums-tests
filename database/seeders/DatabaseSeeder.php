@@ -42,5 +42,13 @@ class DatabaseSeeder extends Seeder
             'status' => PostStatus::FUTURE,
             'user_id' => $user->id
         ]);
+
+        Post::factory()->create([
+            'user_id' => $user->id
+        ]);
+
+        Post::factory()->create([
+            'user_id' => $user->id
+        ]);
     }
 }

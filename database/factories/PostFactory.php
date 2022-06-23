@@ -28,6 +28,7 @@ class PostFactory extends Factory
                 PostStatus::PUBLISH,
                 PostStatus::FUTURE,
             ]),
+            'body' => $this->faker->paragraphs(3, true),
         ];
     }
 }
